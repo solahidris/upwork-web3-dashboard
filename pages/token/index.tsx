@@ -9,7 +9,7 @@ import { Select,SelectContent,SelectItem,SelectTrigger,SelectValue } from "@/com
 
 export default function TokenPage() {
   return (
-    <div className={`flex flex-col min-h-screen p-24`}>
+    <div className={`flex flex-col min-h-screen p-8`}>
       <NavigationMenu />
       <p className="text-5xl pt-8">Token Listing Page</p>
 

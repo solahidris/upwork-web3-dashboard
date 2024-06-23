@@ -9,8 +9,9 @@ import { Select,SelectContent,SelectItem,SelectTrigger,SelectValue } from "@/com
 
 export default function DashboardPage() {
   return (
-    <div className={`flex flex-col min-h-screen p-24`}>
+    <div className={`flex flex-col min-h-screen p-8`}>
       <NavigationMenu />
+
       <p className="text-5xl pt-8">Dashboard Login Page</p>
 
       <div className="mt-8">
