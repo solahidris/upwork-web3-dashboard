@@ -1,0 +1,37 @@
+[
+  {
+    "id": "1",
+    "name": "Leonardo da Vinci",
+    "profileImage": "pfp01.png",
+    "email": "leonardo.davinci@email.com",
+    "amount": 1999
+  },
+  {
+    "id": "2",
+    "name": "Vincent van Gogh",
+    "profileImage": "pfp02.png",
+    "email": "vincent.vangogh@email.com",
+    "amount": 39
+  },
+  {
+    "id": "3",
+    "name": "Pablo Picasso",
+    "profileImage": "pfp03.png",
+    "email": "pablo.picasso@email.com",
+    "amount": 299
+  },
+  {
+    "id": "4",
+    "name": "Claude Monet",
+    "profileImage": "pfp04.png",
+    "email": "claude.monet@email.com",
+    "amount": 50000
+  },
+  {
+    "id": "5",
+    "name": "Salvador Dalí",
+    "profileImage": "pfp05.png",
+    "email": "salvador.dali@email.com",
+    "amount": 1000000
+  }
+]
