@@ -17,7 +17,7 @@ const NavigationMenu = () => {
         <Link href={`/dashboard`}><Button variant="ghost" className={`${currentPage === "/dashboard" ? "bg-slate-100" : ""}`}>Dashboard</Button></Link>
         <Link href={`/token`}><Button variant="ghost" className={`${currentPage === "/token" ? "bg-slate-100" : ""}`}>Token</Button></Link>
       </div>
-      <div className="flex mb-3 gap-4">
+      <div className="flex mb-4 gap-4">
         <Input placeholder="Search" className="min-w-[300px]"/>
         <DropdownMenu>
           <DropdownMenuTrigger>

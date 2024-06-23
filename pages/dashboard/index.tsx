@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import NavigationMenu from "@/components/NavigationMenu";
+import CalendarDashboard from "@/components/CalendarDashboard";
+import SubmenuDashboard from "@/components/SubmenuDashboard";
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -12,10 +14,17 @@ export default function DashboardPage() {
     <div className={`flex flex-col min-h-screen p-8`}>
       <NavigationMenu />
 
-      <p className="text-5xl pt-8">Dashboard Login Page</p>
-
       <div className="mt-8">
         <Card className="p-8 flex flex-col gap-4">
+
+          <div className="flex justify-between">
+            <p className="text-3xl font-bold">Dashboard</p>
+            <div className="flex gap-2">
+              <CalendarDashboard />
+            </div>
+          </div>
+          <SubmenuDashboard />
+
           <div><Button>Button</Button></div>
           <div><Input placeholder="Input"></Input></div>
           <div><Badge>Badge</Badge></div>
