@@ -18,27 +18,14 @@ export default function DashboardPage() {
         <Card className="p-8 flex flex-col gap-4">
 
           <div className="flex justify-between">
-            <p className="text-3xl font-bold">Dashboard</p>
+            <p className="text-3xl font-bold">Admin Dashboard</p>
             <div className="flex gap-2">
               <CalendarDashboard />
             </div>
           </div>
+          
           <SubmenuDashboard />
 
-          <div><Button>Button</Button></div>
-          <div><Input placeholder="Input"></Input></div>
-          <div><Badge>Badge</Badge></div>
-          <div>
-            <Select>
-              <SelectTrigger className="w-[180px]">
-                <SelectValue placeholder="Select" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="light">ERC-20</SelectItem>
-                <SelectItem value="dark">ERC-721</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
         </Card>
       </div>
 

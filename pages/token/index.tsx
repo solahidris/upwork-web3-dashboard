@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import NavigationMenu from "@/components/NavigationMenu";
+// import CalendarDashboard from "@/components/CalendarDashboard";
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -11,10 +12,17 @@ export default function TokenPage() {
   return (
     <div className={`flex flex-col min-h-screen p-8`}>
       <NavigationMenu />
-      <p className="text-5xl pt-8">Token Listing Page</p>
 
       <div className="mt-8">
         <Card className="p-8 flex flex-col gap-4">
+
+          <div className="flex justify-between">
+            <p className="text-3xl font-bold">Token Listing Page</p>
+            <div className="flex gap-2">
+              {/* <CalendarDashboard /> */}
+            </div>
+          </div>
+          
           <div><Button>Button</Button></div>
           <div><Input placeholder="Input"></Input></div>
           <div><Badge>Badge</Badge></div>
@@ -29,6 +37,7 @@ export default function TokenPage() {
               </SelectContent>
             </Select>
           </div>
+
         </Card>
       </div>
 

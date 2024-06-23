@@ -3,8 +3,8 @@ import OverviewContent from "./OverviewContent";
 
 const SubmenuDashboard = () => {
   return(
-    <Tabs defaultValue="account" className="w-[400px]">
-      <TabsList>
+    <Tabs defaultValue="overview" className="w-full">
+      <TabsList className="mb-2">
         <TabsTrigger value="overview">Overview</TabsTrigger>
         <TabsTrigger disabled value="analytics">Analytics</TabsTrigger>
         <TabsTrigger disabled value="reports">Reports</TabsTrigger>

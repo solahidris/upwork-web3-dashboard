@@ -3,19 +3,24 @@ import NavigationMenu from "@/components/NavigationMenu";
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Badge } from "@/components/ui/badge";
-import { Select,SelectContent,SelectItem,SelectTrigger,SelectValue } from "@/components/ui/select"
 
 export default function Home() {
   return (
     <div className={`flex flex-col min-h-screen p-8`}>
       <NavigationMenu />
-      <p className="text-5xl pt-8">Home</p>
 
       <div className="mt-8">
-        <Card className="p-8 flex flex-col gap-4 bg-black text-white">
-          <p className="text-5xl">You are Logged In</p>
+        <Card className="p-8 flex flex-col gap-4">
+
+          <div className="flex justify-between">
+            <p className="text-3xl font-bold">Home</p>
+            <div className="flex gap-2">
+              {/* <CalendarDashboard /> */}
+            </div>
+          </div>
+          
+          <div><Button>You are Logged In</Button></div>
+
         </Card>
       </div>
 
