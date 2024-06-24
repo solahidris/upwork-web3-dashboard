@@ -8,12 +8,25 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Select,SelectContent,SelectItem,SelectTrigger,SelectValue } from "@/components/ui/select";
 
-import { Tokens, columns } from "./columns";
-import { DataTable } from "./data-table";
+import { columns } from "../../lib/columns";
+import DataTable from "../../lib/data-table";
 
+type Tokens = {
+  tokenId: string
+  tokenLogo: string
+  tokenName: string
+  tokenChain: string[]
+  tokenSymbol: string
+  contractAddress: string
+  status: "active" | "pending" | "blocked" | "hold" | "rejected"
+  updatedAt: string
+  // email: string
+  // amount: number
+}
+
+// Fetch data - from API here later
+// NOW - dummy data
 async function getData(): Promise<Tokens[]> {
-  // Fetch data from API here later
-  // Now dummy data
   return [
     {
       tokenId: "728ed52f",
