@@ -32,6 +32,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 
+import { Filter, ChevronDown } from "lucide-react"
+
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[]
@@ -69,21 +71,76 @@ export function DataTable<TData, TValue>({
     },
   })
 
+  console.log("table:", table);
+  const statusFilter = ["active","pending","blocked","hold","rejected"];
   return (
     <div>
-      <div className="flex items-center py-4">
+      <div className="flex items-center py-4 gap-2">
         <Input
-          placeholder="Filter emails..."
-          value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
+          placeholder="Wallet Address"
+          value={(table.getColumn("contractAddress")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
-            table.getColumn("email")?.setFilterValue(event.target.value)
+            table.getColumn("contractAddress")?.setFilterValue(event.target.value)
+          }
+          className="max-w-sm"
+        />
+        <Input
+          placeholder="Token ID"
+          value={(table.getColumn("tokenId")?.getFilterValue() as string) ?? ""}
+          onChange={(event) =>
+            table.getColumn("tokenId")?.setFilterValue(event.target.value)
+          }
+          className="max-w-sm"
+        />
+        <Input
+          placeholder="Token Name"
+          value={(table.getColumn("tokenName")?.getFilterValue() as string) ?? ""}
+          onChange={(event) =>
+            table.getColumn("tokenName")?.setFilterValue(event.target.value)
+          }
+          className="max-w-sm"
+        />
+        <Input
+          placeholder="Contract Address"
+          value={(table.getColumn("contractAddress")?.getFilterValue() as string) ?? ""}
+          onChange={(event) =>
+            table.getColumn("contractAddress")?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
         />
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="ml-auto">
-              Show / Hide Filter
+              <span>Status</span>
+              <ChevronDown className="h-4 w-4" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            {table
+              .getAllColumns()
+              .filter(
+                (column) => column.getCanHide()
+              )
+              .map((column) => {
+                return (
+                  <DropdownMenuCheckboxItem
+                    key={column.id}
+                    className="capitalize"
+                    checked={column.getIsVisible()}
+                    onCheckedChange={(value) =>
+                      column.toggleVisibility(!!value)
+                    }
+                  >
+                    {column.id}
+                  </DropdownMenuCheckboxItem>
+                )
+              })}
+          </DropdownMenuContent>
+        </DropdownMenu>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="outline" className="ml-auto">
+              <Filter />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">

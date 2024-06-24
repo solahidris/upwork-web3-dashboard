@@ -8,43 +8,69 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Select,SelectContent,SelectItem,SelectTrigger,SelectValue } from "@/components/ui/select";
 
-import { Payment, columns } from "./columns";
+import { Tokens, columns } from "./columns";
 import { DataTable } from "./data-table";
 
-async function getData(): Promise<Payment[]> {
-  // Fetch data from your API here.
+async function getData(): Promise<Tokens[]> {
+  // Fetch data from API here later
+  // Now dummy data
   return [
     {
-      id: "728ed52f",
-      amount: 100,
+      tokenId: "728ed52f",
+      tokenLogo: "token_logo_bonk.png",
+      tokenName: "Bonk",
+      tokenChain: ["Ethereum", "Polygon", "Solana"],
+      tokenSymbol: "BONK",
+      contractAddress: "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+      status: "active",
+      updatedAt: "2024-06-24T16:30:01"
+    },
+    {
+      tokenId: "489e1d42",
+      tokenLogo: "token_logo_bome.png",
+      tokenName: "BOOK OF MEME",
+      tokenChain: ["Solana"],
+      tokenSymbol: "BOME",
+      contractAddress: "ukHH6c7mMyiWCf1b9pnWe25TSpkDDt3H5pQZgZ74J82",
       status: "pending",
-      email: "m@example.com",
+      updatedAt: "2024-06-24T16:30:02"
     },
     {
-      id: "489e1d42",
-      amount: 125,
-      status: "processing",
-      email: "example@gmail.com",
+      tokenId: "289e1d42",
+      tokenLogo: "token_logo_mew.png",
+      tokenName: "cat in a dogs world",
+      tokenChain: ["Solana"],
+      tokenSymbol: "MEW",
+      contractAddress: "MEW1gQWJ3nEXg2qgERiKu7FAFj79PHvQVREQUzScPP5",
+      status: "blocked",
+      updatedAt: "2024-06-24T16:30:03"
     },
     {
-      id: "728ed52",
-      amount: 10,
-      status: "success",
-      email: "2m@example.com",
+      tokenId: "109e1d42",
+      tokenLogo: "token_logo_popcat.png",
+      tokenName: "POPCAT",
+      tokenChain: ["Solana"],
+      tokenSymbol: "POPCAT",
+      contractAddress: "7GCihgDB8fe6KNjn2MYtkzZcRjQy3t9GHdC8uHYmW2hr",
+      status: "hold",
+      updatedAt: "2024-06-24T16:30:04"
     },
     {
-      id: "489e1d4",
-      amount: 12,
-      status: "failed",
-      email: "3example@gmail.com",
+      tokenId: "919e1d42",
+      tokenLogo: "token_logo_ponke.png",
+      tokenName: "PONKE",
+      tokenChain: ["Solana"],
+      tokenSymbol: "PONKE",
+      contractAddress: "5z3EqYQo9HiCEs3R84RCDMu2n7anpDMxRhdK8PSWmrRC",
+      status: "hold",
+      updatedAt: "2024-06-24T16:30:04"
     },
-    // ...
   ]
 }
 
 export default function TokenPage() {
 
-  const [data, setData] = useState<Payment[]>([]);
+  const [data, setData] = useState<Tokens[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
