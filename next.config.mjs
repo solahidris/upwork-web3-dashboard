@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['ui.shadcn.com'],
+    domains: ["ui.shadcn.com", "upwork-web3-dashboard.vercel.app"],
   },
 };
 

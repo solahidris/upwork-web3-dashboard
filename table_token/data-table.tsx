@@ -1,25 +1,58 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { ColumnDef, ColumnFiltersState, SortingState, VisibilityState, flexRender, getFilteredRowModel, getCoreRowModel, getPaginationRowModel, getSortedRowModel, useReactTable, } from "@tanstack/react-table"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow, } from "@/components/ui/table"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuTrigger,} from "@/components/ui/dropdown-menu"
-import { Filter, ChevronDown } from "lucide-react"
-import { statusMapping } from "./columns"
+import * as React from "react";
+import {
+  ColumnDef,
+  ColumnFiltersState,
+  SortingState,
+  VisibilityState,
+  flexRender,
+  getFilteredRowModel,
+  getCoreRowModel,
+  getPaginationRowModel,
+  getSortedRowModel,
+  useReactTable,
+} from "@tanstack/react-table";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import {
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Filter, ChevronDown } from "lucide-react";
+import { statusMapping } from "./columns";
+
+// Custom cell renderer for token logo
+const TokenLogoCell = ({ value }: { value: string }) => (
+  <img src={value} alt="Token Logo" style={{ width: "32px", height: "32px" }} />
+);
 
 interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[]
-  data: TData[]
+  columns: ColumnDef<TData, TValue>[];
+  data: TData[];
 }
 
-const DataTable = <TData, TValue>({ columns, data }: DataTableProps<TData, TValue>) => {
-  
-  const [sorting, setSorting] = React.useState<SortingState>([])
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([])
-  const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({})
-  const [rowSelection, setRowSelection] = React.useState({})
+const DataTable = <TData, TValue>({
+  columns,
+  data,
+}: DataTableProps<TData, TValue>) => {
+  const [sorting, setSorting] = React.useState<SortingState>([]);
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
+    []
+  );
+  const [columnVisibility, setColumnVisibility] =
+    React.useState<VisibilityState>({});
+  const [rowSelection, setRowSelection] = React.useState({});
   const table = useReactTable({
     data,
     columns,
@@ -37,16 +70,21 @@ const DataTable = <TData, TValue>({ columns, data }: DataTableProps<TData, TValu
       columnVisibility,
       rowSelection,
     },
-  })
+  });
 
   return (
     <div>
       <div className="flex items-center py-4 gap-4">
         <Input
           placeholder="Wallet Address"
-          value={(table.getColumn("contractAddress")?.getFilterValue() as string) ?? ""}
+          value={
+            (table.getColumn("contractAddress")?.getFilterValue() as string) ??
+            ""
+          }
           onChange={(event) =>
-            table.getColumn("contractAddress")?.setFilterValue(event.target.value)
+            table
+              .getColumn("contractAddress")
+              ?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
         />
@@ -60,7 +98,9 @@ const DataTable = <TData, TValue>({ columns, data }: DataTableProps<TData, TValu
         />
         <Input
           placeholder="Token Name"
-          value={(table.getColumn("tokenName")?.getFilterValue() as string) ?? ""}
+          value={
+            (table.getColumn("tokenName")?.getFilterValue() as string) ?? ""
+          }
           onChange={(event) =>
             table.getColumn("tokenName")?.setFilterValue(event.target.value)
           }
@@ -68,9 +108,14 @@ const DataTable = <TData, TValue>({ columns, data }: DataTableProps<TData, TValu
         />
         <Input
           placeholder="Contract Address"
-          value={(table.getColumn("contractAddress")?.getFilterValue() as string) ?? ""}
+          value={
+            (table.getColumn("contractAddress")?.getFilterValue() as string) ??
+            ""
+          }
           onChange={(event) =>
-            table.getColumn("contractAddress")?.setFilterValue(event.target.value)
+            table
+              .getColumn("contractAddress")
+              ?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
         />
@@ -88,7 +133,9 @@ const DataTable = <TData, TValue>({ columns, data }: DataTableProps<TData, TValu
                 className="capitalize"
                 checked={table.getColumn("status")?.getFilterValue() === key}
                 onCheckedChange={(checked) => {
-                  table.getColumn("status")?.setFilterValue(checked ? key : undefined)
+                  table
+                    .getColumn("status")
+                    ?.setFilterValue(checked ? key : undefined);
                 }}
               >
                 {value}
@@ -105,9 +152,7 @@ const DataTable = <TData, TValue>({ columns, data }: DataTableProps<TData, TValu
           <DropdownMenuContent align="end">
             {table
               .getAllColumns()
-              .filter(
-                (column) => column.getCanHide()
-              )
+              .filter((column) => column.getCanHide())
               .map((column) => {
                 return (
                   <DropdownMenuCheckboxItem
@@ -120,7 +165,7 @@ const DataTable = <TData, TValue>({ columns, data }: DataTableProps<TData, TValu
                   >
                     {column.id}
                   </DropdownMenuCheckboxItem>
-                )
+                );
               })}
           </DropdownMenuContent>
         </DropdownMenu>
@@ -149,7 +194,7 @@ const DataTable = <TData, TValue>({ columns, data }: DataTableProps<TData, TValu
                             header.getContext()
                           )}
                     </TableHead>
-                  )
+                  );
                 })}
               </TableRow>
             ))}
@@ -163,14 +208,20 @@ const DataTable = <TData, TValue>({ columns, data }: DataTableProps<TData, TValu
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
-                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext()
+                      )}
                     </TableCell>
                   ))}
                 </TableRow>
               ))
             ) : (
               <TableRow>
-                <TableCell colSpan={columns.length} className="h-24 text-center">
+                <TableCell
+                  colSpan={columns.length}
+                  className="h-24 text-center"
+                >
                   No results.
                 </TableCell>
               </TableRow>
@@ -178,7 +229,7 @@ const DataTable = <TData, TValue>({ columns, data }: DataTableProps<TData, TValu
           </TableBody>
         </Table>
       </div>
-      
+
       <div className="flex items-center justify-end space-x-2 py-4">
         <Button
           variant="outline"
@@ -198,7 +249,7 @@ const DataTable = <TData, TValue>({ columns, data }: DataTableProps<TData, TValu
         </Button>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default DataTable;

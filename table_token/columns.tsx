@@ -7,6 +7,14 @@ import { ArrowUpDown, MoreHorizontal } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger, } from "@/components/ui/dropdown-menu"
 import { useRouter } from "next/router"
+import Image from "next/image"
+
+// Custom cell renderer for token logo
+const TokenLogoCell = ({ value }: { value: string }) => (
+  <div className="flex justify-center">
+    <Image src={value} width={32} height={32} className="w-8 h-8 rounded-full"  alt="Token Logo" />
+  </div>
+);
 
 export const statusMapping = {
   active: "Active",
@@ -37,6 +45,10 @@ export const columns: ColumnDef<Tokens>[] = [
   {
     accessorKey: "tokenLogo",
     header: "Token Logo",
+    cell: ({ getValue }) => {
+      const value = getValue() as string;
+      return <TokenLogoCell value={value} />;
+    },
   },
   {
     accessorKey: "tokenName",
