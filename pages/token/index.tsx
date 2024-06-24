@@ -109,7 +109,7 @@ export default function TokenPage() {
       <NavigationMenu />
 
       <div className="mt-8">
-        <Card className="p-8 flex flex-col gap-4">
+        <Card className="p-8 flex flex-col">
           <p className="text-3xl font-bold">Token Listing Page</p>
           <DataTable columns={columns} data={data} />
 

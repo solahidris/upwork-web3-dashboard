@@ -41,7 +41,7 @@ const DataTable = <TData, TValue>({ columns, data }: DataTableProps<TData, TValu
 
   return (
     <div>
-      <div className="flex items-center py-4 gap-2">
+      <div className="flex items-center py-4 gap-4">
         <Input
           placeholder="Wallet Address"
           value={(table.getColumn("contractAddress")?.getFilterValue() as string) ?? ""}
