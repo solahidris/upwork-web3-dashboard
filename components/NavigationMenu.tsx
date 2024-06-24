@@ -15,7 +15,7 @@ const NavigationMenu = () => {
       <div className="flex gap-2">
         <Link href={`/`}><Button variant="ghost" className={`${currentPage === "/" ? "bg-slate-100" : ""}`}>Home</Button></Link>
         <Link href={`/dashboard`}><Button variant="ghost" className={`${currentPage === "/dashboard" ? "bg-slate-100" : ""}`}>Dashboard</Button></Link>
-        <Link href={`/token`}><Button variant="ghost" className={`${currentPage === "/token" ? "bg-slate-100" : ""}`}>Token</Button></Link>
+        <Link href={`/tokens`}><Button variant="ghost" className={`${currentPage === "/tokens" ? "bg-slate-100" : ""}`}>Tokens</Button></Link>
       </div>
       <div className="flex mb-4 gap-4">
         <Input placeholder="Search" className="min-w-[300px]"/>
