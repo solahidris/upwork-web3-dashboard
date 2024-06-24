@@ -7,6 +7,14 @@ import { ArrowUpDown, MoreHorizontal } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger, } from "@/components/ui/dropdown-menu"
 
+export const statusMapping = {
+  active: "Active",
+  pending: "Pending",
+  blocked: "Blocked",
+  hold: "On Hold",
+  rejected: "Rejected"
+}
+
 export type Tokens = {
   tokenId: string
   tokenLogo: string
@@ -41,9 +49,18 @@ export const columns: ColumnDef<Tokens>[] = [
     accessorKey: "contractAddress",
     header: "Contract Address",
   },
+  // {
+  //   accessorKey: "status",
+  //   header: "Status",
+  // },
   {
     accessorKey: "status",
     header: "Status",
+    cell: ({ row }) => {
+      const status = row.getValue("status") as keyof typeof statusMapping
+      // return <Badge>{statusMapping[status]}</Badge>
+      return <span>{statusMapping[status]}</span>
+    }
   },
   {
     accessorKey: "updatedAt",
@@ -58,7 +75,6 @@ export const columns: ColumnDef<Tokens>[] = [
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" className="h-8 w-8 p-0">
-              <span className="sr-only">Open menu</span>
               <MoreHorizontal className="h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>

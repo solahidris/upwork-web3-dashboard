@@ -8,8 +8,8 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Select,SelectContent,SelectItem,SelectTrigger,SelectValue } from "@/components/ui/select";
 
-import { columns } from "../../lib/columns";
-import DataTable from "../../lib/data-table";
+import { columns } from "../../table_token/columns";
+import DataTable from "../../table_token/data-table";
 
 type Tokens = {
   tokenId: string

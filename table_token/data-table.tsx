@@ -1,57 +1,25 @@
 "use client"
 
 import * as React from "react"
-import {
-  ColumnDef,
-  ColumnFiltersState,
-  SortingState,
-  VisibilityState,
-  flexRender,
-  getFilteredRowModel,
-  getCoreRowModel,
-  getPaginationRowModel,
-  getSortedRowModel,
-  useReactTable,
-} from "@tanstack/react-table"
-
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table"
-
+import { ColumnDef, ColumnFiltersState, SortingState, VisibilityState, flexRender, getFilteredRowModel, getCoreRowModel, getPaginationRowModel, getSortedRowModel, useReactTable, } from "@tanstack/react-table"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow, } from "@/components/ui/table"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import {
-  DropdownMenu,
-  DropdownMenuCheckboxItem,
-  DropdownMenuContent,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-
+import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuTrigger,} from "@/components/ui/dropdown-menu"
 import { Filter, ChevronDown } from "lucide-react"
+import { statusMapping } from "./columns"
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[]
 }
 
-const DataTable = <TData, TValue>({
-  columns,
-  data,
-}: DataTableProps<TData, TValue>) => {
+const DataTable = <TData, TValue>({ columns, data }: DataTableProps<TData, TValue>) => {
+  
   const [sorting, setSorting] = React.useState<SortingState>([])
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
-    []
-  )
-  const [columnVisibility, setColumnVisibility] =
-    React.useState<VisibilityState>({})
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([])
+  const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({})
   const [rowSelection, setRowSelection] = React.useState({})
-
-
   const table = useReactTable({
     data,
     columns,
@@ -71,8 +39,6 @@ const DataTable = <TData, TValue>({
     },
   })
 
-  console.log("table:", table);
-  const statusFilter = ["active","pending","blocked","hold","rejected"];
   return (
     <div>
       <div className="flex items-center py-4 gap-2">
@@ -116,25 +82,18 @@ const DataTable = <TData, TValue>({
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            {table
-              .getAllColumns()
-              .filter(
-                (column) => column.getCanHide()
-              )
-              .map((column) => {
-                return (
-                  <DropdownMenuCheckboxItem
-                    key={column.id}
-                    className="capitalize"
-                    checked={column.getIsVisible()}
-                    onCheckedChange={(value) =>
-                      column.toggleVisibility(!!value)
-                    }
-                  >
-                    {column.id}
-                  </DropdownMenuCheckboxItem>
-                )
-              })}
+            {Object.entries(statusMapping).map(([key, value]) => (
+              <DropdownMenuCheckboxItem
+                key={key}
+                className="capitalize"
+                checked={table.getColumn("status")?.getFilterValue() === key}
+                onCheckedChange={(checked) => {
+                  table.getColumn("status")?.setFilterValue(checked ? key : undefined)
+                }}
+              >
+                {value}
+              </DropdownMenuCheckboxItem>
+            ))}
           </DropdownMenuContent>
         </DropdownMenu>
         <DropdownMenu>
@@ -167,12 +126,13 @@ const DataTable = <TData, TValue>({
         </DropdownMenu>
       </div>
 
-      {table.getFilteredSelectedRowModel().rows.length > 0 &&
+      {/*  RENDER - SELECT ROW FEATURE */}
+      {/* {table.getFilteredSelectedRowModel().rows.length > 0 &&
         <div className="flex-1 pb-2 text-sm text-muted-foreground">
           {table.getFilteredSelectedRowModel().rows.length} of{" "}
           {table.getFilteredRowModel().rows.length} row(s) selected.
         </div>
-      }
+      } */}
 
       <div className="rounded-md border">
         <Table>
@@ -218,6 +178,7 @@ const DataTable = <TData, TValue>({
           </TableBody>
         </Table>
       </div>
+      
       <div className="flex items-center justify-end space-x-2 py-4">
         <Button
           variant="outline"
