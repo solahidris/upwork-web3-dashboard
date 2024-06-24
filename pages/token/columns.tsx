@@ -3,28 +3,31 @@
 import { ColumnDef } from "@tanstack/react-table"
 import { Badge } from "@/components/ui/badge"
 import { Checkbox } from "@/components/ui/checkbox"
-
 import { ArrowUpDown, MoreHorizontal } from "lucide-react"
- 
 import { Button } from "@/components/ui/button"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-// This type is used to define the shape of our data.
-// You can use a Zod schema here if you want.
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger, } from "@/components/ui/dropdown-menu"
+
 export type Payment = {
   id: string
   amount: number
+  tokenLogo: string
+  tokenChain: string
+  tokenName: string
+  tokenSymbol: string
+  contractAddress: string
   status: "pending" | "processing" | "success" | "failed"
   email: string
 }
 
 export const columns: ColumnDef<Payment>[] = [
+  {
+    accessorKey: "id",
+    header: "ID",
+  },
+  {
+    accessorKey: "contractAddress",
+    header: "Contract Address",
+  },
   {
     accessorKey: "status",
     header: "Status",

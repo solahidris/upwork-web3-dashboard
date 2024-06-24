@@ -29,13 +29,13 @@ async function getData(): Promise<Payment[]> {
     {
       id: "728ed52",
       amount: 10,
-      status: "2pending",
+      status: "success",
       email: "2m@example.com",
     },
     {
       id: "489e1d4",
       amount: 12,
-      status: "3processing",
+      status: "failed",
       email: "3example@gmail.com",
     },
     // ...
@@ -43,6 +43,7 @@ async function getData(): Promise<Payment[]> {
 }
 
 export default function TokenPage() {
+
   const [data, setData] = useState<Payment[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -65,50 +66,13 @@ export default function TokenPage() {
 
       <div className="mt-8">
         <Card className="p-8 flex flex-col gap-4">
-
-          <div className="flex justify-between">
-            <p className="text-3xl font-bold">Token Listing Page</p>
-            <div className="flex gap-2">
-              {/* <CalendarDashboard /> */}
-            </div>
-          </div>
-          
+          <p className="text-3xl font-bold">Token Listing Page</p>
           <DataTable columns={columns} data={data} />
-
-          {/* <div><Button>Button</Button></div>
-          <div><Input placeholder="Input"></Input></div>
-          <div><Badge>Badge</Badge></div>
-          <div>
-            <Select>
-              <SelectTrigger className="w-[180px]">
-                <SelectValue placeholder="Select" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="light">ERC-20</SelectItem>
-                <SelectItem value="dark">ERC-721</SelectItem>
-              </SelectContent>
-            </Select>
-          </div> */}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
           <ul>
             <p className="text-lg font-semibold">Tokens (index page)</p>
             <br/>
-            <li>Filter
+            <li>Filter ( all  string text, except status )
               <ul className="list-disc list-inside">
                 <li>Wallet Address</li>
                 <li>Token ID</li>
