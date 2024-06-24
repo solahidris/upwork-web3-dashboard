@@ -6,6 +6,7 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { ArrowUpDown, MoreHorizontal } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger, } from "@/components/ui/dropdown-menu"
+import { useRouter } from "next/router"
 
 export const statusMapping = {
   active: "Active",
@@ -70,6 +71,21 @@ export const columns: ColumnDef<Tokens>[] = [
     id: "actions",
     cell: ({ row }) => {
       const tokens = row.original
+      const router = useRouter()
+
+      const handleEdit = () => {
+        if (confirm(`Edit token ${tokens.tokenName}?`)) {
+          router.push(`/token/edit/${tokens.tokenId}`)
+          console.log(`Edit button confirmed. Routing to ${tokens.tokenId}`)
+        }
+        console.log(`Edit action abandoned.`)
+      }
+      const handleDelete = () => {
+        if (confirm(`Delete token ${tokens.tokenName}?`)) {
+          // Perform delete operation here
+          console.log(`Deleting token ${tokens.tokenId}`)
+        }
+      }
  
       return (
         <DropdownMenu>
@@ -80,11 +96,13 @@ export const columns: ColumnDef<Tokens>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem onClick={() => {}}>
+            <DropdownMenuItem onClick={handleEdit}>
               Edit
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Delete</DropdownMenuItem>
+            <DropdownMenuItem onClick={handleDelete}>
+              Delete
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       )
