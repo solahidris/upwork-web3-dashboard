@@ -32,11 +32,6 @@ import {
 import { Filter, ChevronDown } from "lucide-react";
 import { statusMapping } from "./columns";
 
-// Custom cell renderer for token logo
-const TokenLogoCell = ({ value }: { value: string }) => (
-  <img src={value} alt="Token Logo" style={{ width: "32px", height: "32px" }} />
-);
-
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];

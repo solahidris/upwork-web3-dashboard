@@ -15,6 +15,11 @@ const TokenLogoCell = ({ value }: { value: string }) => (
     <Image src={value} width={32} height={32} className="w-8 h-8 rounded-full"  alt="Token Logo" />
   </div>
 );
+const TokenChainCell = ({ value }: { value: string }) => (
+  <div className="flex justify-center">
+    <Image src={value} width={32} height={32} className="w-8 h-8 rounded-full"  alt="Token Logo" />
+  </div>
+);
 
 export const statusMapping = {
   active: "Active",
@@ -45,9 +50,27 @@ export const columns: ColumnDef<Tokens>[] = [
   {
     accessorKey: "tokenLogo",
     header: "Token Logo",
-    cell: ({ getValue }) => {
+    cell: ({ getValue, row }) => {
       const value = getValue() as string;
-      return <TokenLogoCell value={value} />;
+      const chainLogoMap: { [key: string]: string } = {
+        Ethereum: "/chain_logo/ethereum-eth-logo.png",
+        Polygon: "/chain_logo/polygon-matic-logo.png",
+        Solana: "/chain_logo/solana-sol-logo.png",
+        Bitcoin: "/chain_logo/bitcoin-btc-logo.png",
+      };
+  
+      return (
+        <div>
+          <TokenLogoCell value={value} />
+          <div className="flex gap-1">
+            {row.original.tokenChain.map((chainItem, index) => (
+              <div key={index} className="bg-gray-200xxxx">
+                <TokenChainCell value={chainLogoMap[chainItem]}/>
+              </div>
+            ))}
+          </div>
+        </div>
+      );
     },
   },
   {
