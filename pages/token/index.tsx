@@ -43,14 +43,12 @@ export default function TokenPage() {
   return (
     <div className={`flex min-h-screen`}>
       <NavigationMenu />
-
       <div className="w-full p-8">
         <Card className="p-8 flex flex-col">
           <p className="text-3xl font-bold">Token Listing Page</p>
           <DataTable columns={columns} data={data} />
         </Card>
       </div>
-
     </div>
   );
 }
