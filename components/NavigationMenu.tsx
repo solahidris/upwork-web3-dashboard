@@ -6,9 +6,11 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger, } from "@/components/ui/dropdown-menu"
 import { useRouter } from "next/router";
 import { Home, LayoutDashboard, CircleDollarSign, MoreHorizontalIcon } from "lucide-react";
+import { useTheme } from "@/contexts/ThemeContext";
 
 const NavigationMenu = () => {
 
+  const { isDarkMode } = useTheme();
   const router = useRouter();
   const currentPage = router.asPath;
   const menuList = [
@@ -19,7 +21,7 @@ const NavigationMenu = () => {
   const userEmail = "hello@example.com";
 
   return (
-    <div className="min-w-[300px] flex flex-col justify-between border-r p-8">
+    <div className="min-w-[280px] flex flex-col justify-between border-r p-8 min-h-screen fixed">
       
       <div className="flex flex-col">
         <Link href="/" className="flex items-center gap-4 ml-3">
@@ -28,7 +30,7 @@ const NavigationMenu = () => {
         </Link>
         <div className="flex flex-col gap-4 mt-16">
           {menuList.map((item, index) => (
-            <Button key={index} variant="ghost"className={`flex justify-start py-6 ${currentPage === item.link ? "bg-slate-100" : ""}`}>
+            <Button key={index} variant="ghost"className={`flex justify-start py-6 ${currentPage === item.link ? isDarkMode ? "bg-gray-700" : "bg-gray-100" : ""}`}>
               <Link className="flex gap-4 items-center w-full" href={item.link}>
                 {item.icon}<p>{item.text}</p>
               </Link>

@@ -1,6 +1,6 @@
 import * as React from "react"
-
 import { cn } from "@/lib/utils"
+import { useTheme } from "@/contexts/ThemeContext"
 
 const Table = React.forwardRef<
   HTMLTableElement,
@@ -54,16 +54,19 @@ TableFooter.displayName = "TableFooter"
 const TableRow = React.forwardRef<
   HTMLTableRowElement,
   React.HTMLAttributes<HTMLTableRowElement>
->(({ className, ...props }, ref) => (
+>(({ className, ...props }, ref) => {
+  const { isDarkMode } = useTheme();
+  return (
   <tr
     ref={ref}
     className={cn(
       "border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted",
+      isDarkMode ? "border-gray-700/60" : "",
       className
     )}
     {...props}
   />
-))
+)})
 TableRow.displayName = "TableRow"
 
 const TableHead = React.forwardRef<

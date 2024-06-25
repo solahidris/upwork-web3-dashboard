@@ -4,6 +4,8 @@ import { Card } from "@/components/ui/card";
 import { columns } from "../../table_token/columns";
 import DataTable from "../../table_token/data-table";
 import tokensData from "@/data/tokens.json";
+import { useTheme } from "@/contexts/ThemeContext";
+import DarkModeButton from "@/components/DarkModeButton";
 
 type Tokens = {
   tokenId: string
@@ -26,6 +28,7 @@ export default function TokenPage() {
 
   const [data, setData] = useState<Tokens[]>([]);
   const [loading, setLoading] = useState(true);
+  const { isDarkMode } = useTheme();
 
   useEffect(() => {
     async function fetchData() {
@@ -41,11 +44,14 @@ export default function TokenPage() {
   }
 
   return (
-    <div className={`flex min-h-screen`}>
+    <div className={`flex min-h-screen ${isDarkMode ? 'bg-gray-800 text-white' : 'bg-gray-50 text-black'}`}>
       <NavigationMenu />
-      <div className="w-full p-8">
+      <div className="w-full p-8 ml-[280px]">
         <Card className="p-8 flex flex-col">
-          <p className="text-3xl font-bold">Token Listing Page</p>
+          <div className="flex justify-between">
+            <p className="text-3xl font-bold">Token Listing Page</p>
+            <DarkModeButton />
+          </div>
           <DataTable columns={columns} data={data} />
         </Card>
       </div>

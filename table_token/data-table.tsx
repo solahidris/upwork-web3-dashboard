@@ -31,6 +31,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Filter, ChevronDown } from "lucide-react";
 import { statusMapping } from "./columns";
+import { useTheme } from "@/contexts/ThemeContext";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -66,6 +67,7 @@ const DataTable = <TData, TValue>({
       rowSelection,
     },
   });
+  const { isDarkMode } = useTheme();
 
   return (
     <div>
@@ -174,7 +176,7 @@ const DataTable = <TData, TValue>({
         </div>
       } */}
 
-      <div className="rounded-md border">
+      <div className={`rounded-md border ${isDarkMode ? "border-gray-700" : "border-gray-50"} `}>
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
