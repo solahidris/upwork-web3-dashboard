@@ -16,8 +16,9 @@ const TokenLogoCell = ({ value }: { value: string }) => (
   </div>
 );
 const TokenChainCell = ({ value }: { value: string }) => (
-  <div className="flex justify-center">
-    <Image src={value} width={32} height={32} className="w-8 h-8 rounded-full"  alt="Token Logo" />
+  <div className="flex justify-center w-8 h-8 rounded-full bg-gray-100 border border-[4px] scale-[0.5]">
+    <Image src={value} width={32} height={32} alt="Token Logo"
+    className="w-full p-1" />
   </div>
 );
 
@@ -62,9 +63,9 @@ export const columns: ColumnDef<Tokens>[] = [
       return (
         <div>
           <TokenLogoCell value={value} />
-          <div className="flex gap-1">
+          <div className="flex gap-1 absolute mt-[-48px] ml-[50px]">
             {row.original.tokenChain.map((chainItem, index) => (
-              <div key={index} className="bg-gray-200xxxx">
+              <div key={index} className={`z-${index+1}0 mr-[-24px]`} >
                 <TokenChainCell value={chainLogoMap[chainItem]}/>
               </div>
             ))}

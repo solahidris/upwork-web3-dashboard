@@ -6,10 +6,10 @@ import { Card } from "@/components/ui/card";
 
 export default function Home() {
   return (
-    <div className={`flex flex-col min-h-screen p-8`}>
+    <div className={`flex min-h-screen`}>
       <NavigationMenu />
 
-      <div className="mt-8">
+      <div className="w-full p-8">
         <Card className="p-8 flex flex-col gap-4">
 
           <div className="flex justify-between">
