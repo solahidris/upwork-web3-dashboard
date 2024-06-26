@@ -49,7 +49,7 @@ export default function TokenPage() {
       <div className="w-full p-8 ml-[240px]">
         <Card className="p-8 flex flex-col">
           <div className="flex justify-between">
-            <p className="text-3xl font-bold">Token Listing Page</p>
+            <p className="text-3xl font-bold">Token Listing</p>
             <DarkModeButton />
           </div>
           <DataTable columns={columns} data={data} />

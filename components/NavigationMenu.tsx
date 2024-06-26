@@ -50,7 +50,7 @@ const NavigationMenu = () => {
             </Avatar> */}
             <MoreHorizontalIcon />
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="mr-8 mt-1">
+          <DropdownMenuContent className={`mr-20 mb-2 border p-3 ${isDarkMode && "bg-gray-900 border-gray-500 text-gray-300 hover:text-gray-100/80"}`}>
             <DropdownMenuLabel>My Account</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem className="cursor-pointer">Profile</DropdownMenuItem>

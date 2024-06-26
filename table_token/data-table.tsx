@@ -83,7 +83,7 @@ const DataTable = <TData, TValue>({
               .getColumn("contractAddress")
               ?.setFilterValue(event.target.value)
           }
-          className="max-w-sm"
+          className={`max-w-sm border ${isDarkMode && "bg-gray-900 border-gray-800"}`}
         />
         <Input
           placeholder="Token ID"
@@ -91,7 +91,7 @@ const DataTable = <TData, TValue>({
           onChange={(event) =>
             table.getColumn("tokenId")?.setFilterValue(event.target.value)
           }
-          className="max-w-sm"
+          className={`max-w-sm border ${isDarkMode && "bg-gray-900 border-gray-800"}`}
         />
         <Input
           placeholder="Token Name"
@@ -101,7 +101,7 @@ const DataTable = <TData, TValue>({
           onChange={(event) =>
             table.getColumn("tokenName")?.setFilterValue(event.target.value)
           }
-          className="max-w-sm"
+          className={`max-w-sm border ${isDarkMode && "bg-gray-900 border-gray-800"}`}
         />
         <Input
           placeholder="Contract Address"
@@ -114,16 +114,16 @@ const DataTable = <TData, TValue>({
               .getColumn("contractAddress")
               ?.setFilterValue(event.target.value)
           }
-          className="max-w-sm"
+          className={`max-w-sm border ${isDarkMode && "bg-gray-900 border-gray-800"}`}
         />
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="ml-auto">
+            <Button variant="outline" className={`max-w-sm border ml-auto ${isDarkMode && "bg-gray-900 border-gray-800 hover:bg-gray-950/50 hover:text-gray-100/80"}`}>
               <span>Status</span>
               <ChevronDown className="h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
+          <DropdownMenuContent align="end" className={`border p-3 ${isDarkMode && "bg-gray-900 border-gray-500 text-gray-300 hover:text-gray-100/80"}`}>
             {Object.entries(statusMapping).map(([key, value]) => (
               <DropdownMenuCheckboxItem
                 key={key}
@@ -142,11 +142,11 @@ const DataTable = <TData, TValue>({
         </DropdownMenu>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="ml-auto">
+            <Button variant="outline" className={`max-w-sm border ml-auto ${isDarkMode && "bg-gray-900 border-gray-800 hover:bg-gray-950/50 hover:text-gray-100/80"}`}>
               <Filter />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
+          <DropdownMenuContent align="end" className={`border p-3 ${isDarkMode && "bg-gray-900 border-gray-500 text-gray-300 hover:text-gray-100/80"}`}>
             {table
               .getAllColumns()
               .filter((column) => column.getCanHide())
@@ -233,6 +233,7 @@ const DataTable = <TData, TValue>({
           size="sm"
           onClick={() => table.previousPage()}
           disabled={!table.getCanPreviousPage()}
+          className={`border p-3 ${isDarkMode && "bg-gray-900 border-gray-500 text-gray-300 hover:text-gray-100/80"}`}
         >
           Previous
         </Button>
@@ -241,6 +242,7 @@ const DataTable = <TData, TValue>({
           size="sm"
           onClick={() => table.nextPage()}
           disabled={!table.getCanNextPage()}
+          className={`border p-3 ${isDarkMode && "bg-gray-900 border-gray-500 text-gray-300 hover:text-gray-100/80"}`}
         >
           Next
         </Button>
