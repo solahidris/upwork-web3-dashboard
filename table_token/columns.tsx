@@ -66,7 +66,7 @@ export const columns: ColumnDef<Tokens>[] = [
       return (
         <div className="-ml-5">
           <TokenLogoCell value={value} />
-          <div className="flex gap-1 absolute mt-[-48px] ml-[28px]">
+          <div className="flex gap-1 absolute mt-[-48px] ml-[48px]">
             {row.original.tokenChain.map((chainItem, index) => (
               <div key={index} className={`z-${index+1}0 mr-[-24px]`} >
                 <TokenChainCell value={chainLogoMap[chainItem]}/>
