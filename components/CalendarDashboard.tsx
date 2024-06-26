@@ -11,12 +11,14 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
+import { useTheme } from "@/contexts/ThemeContext" // Ensure this hook is correctly implemented
 
 const CalendarDashboard = ({ className }: React.HTMLAttributes<HTMLDivElement>) => {
   const [date, setDate] = React.useState<DateRange | undefined>({
-    from: new Date(2022, 0, 20),
-    to: addDays(new Date(2022, 0, 20), 20),
+    from: new Date(2024, 0, 20),
+    to: addDays(new Date(2024, 0, 20), 20),
   })
+  const { isDarkMode } = useTheme(); // Assuming useTheme returns an object with isDarkMode
 
   return (
     <div className={cn("grid gap-2", className)}>
@@ -25,10 +27,11 @@ const CalendarDashboard = ({ className }: React.HTMLAttributes<HTMLDivElement>) 
           <Button
             id="date"
             variant={"outline"}
-            className={cn(
-              "w-[300px] justify-start text-left font-normal",
-              !date && "text-muted-foreground"
-            )}
+            className={`
+              w-[300px] justify-start text-left font-normal border -mt-2
+              ${!date ? "text-muted-foreground" : ""}
+              ${isDarkMode ? "bg-gray-900 border-gray-800" : "bg-gray-50"}
+            `}
           >
             <CalendarIcon className="mr-2 h-4 w-4" />
             {date?.from ? (
@@ -45,7 +48,8 @@ const CalendarDashboard = ({ className }: React.HTMLAttributes<HTMLDivElement>) 
             )}
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="w-auto p-0" align="start">
+        <PopoverContent align="start" 
+        className={`mr-12 mt-2 w-auto p-0 bg-red-300 ${isDarkMode ? "bg-gray-700 border-gray-600" : "bg-gray-50"}`}>
           <Calendar
             initialFocus
             mode="range"

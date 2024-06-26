@@ -4,6 +4,7 @@ import { DayPicker } from "react-day-picker"
 
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
+import { useTheme } from "@/contexts/ThemeContext"
 
 export type CalendarProps = React.ComponentProps<typeof DayPicker>
 
@@ -13,19 +14,23 @@ function Calendar({
   showOutsideDays = true,
   ...props
 }: CalendarProps) {
+  const { isDarkMode } = useTheme();
+
   return (
     <DayPicker
       showOutsideDays={showOutsideDays}
-      className={cn("p-3", className)}
+      // className={cn("p-3", className)}
+      className={`p-6 ${className} ${isDarkMode ? "bg-gray-800 border-gray-600" : "bg-gray-50"}`}
       classNames={{
         months: "flex flex-col sm:flex-row space-y-4 sm:space-x-4 sm:space-y-0",
-        month: "space-y-4",
+        month: `space-y-4 ${isDarkMode ? "text-gray-300" : "text-black"}`,
         caption: "flex justify-center pt-1 relative items-center",
         caption_label: "text-sm font-medium",
         nav: "space-x-1 flex items-center",
         nav_button: cn(
           buttonVariants({ variant: "outline" }),
-          "h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100"
+          "h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100 border-0",
+          isDarkMode ? "bg-gray-800/50 border-gray-600 text-gray-400" : "bg-gray-50 text-black",
         ),
         nav_button_previous: "absolute left-1",
         nav_button_next: "absolute right-1",

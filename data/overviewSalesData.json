@@ -25,13 +25,13 @@
     "name": "Claude Monet",
     "profileImage": "pfp04.png",
     "email": "claude.monet@email.com",
-    "amount": 50000
+    "amount": 5500
   },
   {
     "id": "5",
     "name": "Salvador Dalí",
     "profileImage": "pfp05.png",
     "email": "salvador.dali@email.com",
-    "amount": 1000000
+    "amount": 1000
   }
 ]

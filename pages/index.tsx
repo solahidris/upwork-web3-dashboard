@@ -6,12 +6,12 @@ import { useTheme } from "@/contexts/ThemeContext";
 import DarkModeButton from "@/components/DarkModeButton";
 
 export default function Home() {
-  const { isDarkMode } = useTheme();
+  const { isDarkMode, toggleDarkMode } = useTheme();
 
   return (
     <div className={`flex min-h-screen ${isDarkMode ? 'bg-gray-800 text-white' : 'bg-gray-50 text-black'}`}>
       <NavigationMenu />
-      <div className="w-full p-8 ml-[280px]">
+      <div className="w-full p-8 ml-[240px]">
         <Card className="p-8 flex flex-col gap-4">
           <div className="flex justify-between">
             <p className="text-3xl font-bold">Home</p>
@@ -20,6 +20,10 @@ export default function Home() {
             </div>
           </div>
           <div><Button>You are Logged In</Button></div>
+          <div><Button>1- edits dont need the alert dialog</Button></div>
+          <div><Button>2- directly navigate to the edit page</Button></div>
+          <div><Button>3- for delete, can use the shadcn dialog</Button></div>
+          <div><Button>4- for any other pages please use back the same dashboard layout</Button></div>
         </Card>
       </div>
     </div>

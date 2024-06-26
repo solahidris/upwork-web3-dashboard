@@ -46,7 +46,7 @@ export default function TokenPage() {
   return (
     <div className={`flex min-h-screen ${isDarkMode ? 'bg-gray-800 text-white' : 'bg-gray-50 text-black'}`}>
       <NavigationMenu />
-      <div className="w-full p-8 ml-[280px]">
+      <div className="w-full p-8 ml-[240px]">
         <Card className="p-8 flex flex-col">
           <div className="flex justify-between">
             <p className="text-3xl font-bold">Token Listing Page</p>

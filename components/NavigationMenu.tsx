@@ -21,7 +21,7 @@ const NavigationMenu = () => {
   const userEmail = "hello@example.com";
 
   return (
-    <div className="min-w-[280px] flex flex-col justify-between border-r p-8 min-h-screen fixed">
+    <div className="min-w-[240px] flex flex-col justify-between border-r p-8 min-h-screen fixed">
       
       <div className="flex flex-col">
         <Link href="/" className="flex items-center gap-4 ml-3">
