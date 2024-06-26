@@ -3,11 +3,14 @@
 import { ColumnDef } from "@tanstack/react-table"
 import { Badge } from "@/components/ui/badge"
 import { Checkbox } from "@/components/ui/checkbox"
-import { ArrowUpDown, MoreHorizontal } from "lucide-react"
+import { ArrowUpDown, MoreHorizontal, Copy} from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger, } from "@/components/ui/dropdown-menu"
 import { useRouter } from "next/router"
 import Image from "next/image"
+import { useTheme } from "@/contexts/ThemeContext"
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger, } from "@/components/ui/tooltip"
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogClose,  DialogTitle, DialogTrigger, DialogFooter } from "@/components/ui/dialog"
 
 // Custom cell renderer for token logo
 const TokenLogoCell = ({ value }: { value: string }) => (
@@ -85,6 +88,24 @@ export const columns: ColumnDef<Tokens>[] = [
   {
     accessorKey: "contractAddress",
     header: "Contract Address",
+    cell: ({ getValue }) => {
+      const fullAddress = getValue() as string;
+      const displayAddress = `${fullAddress.slice(0, 6)}...${fullAddress.slice(-4)}`;
+
+      const handleCopy = () => {
+        navigator.clipboard.writeText(fullAddress);
+        alert("Contract address copied to clipboard!");
+      };
+
+      return (
+        <div className="flex items-center">
+          <span>{displayAddress}</span>
+          <Button variant="ghost" onClick={handleCopy}>
+            <Copy className="w-3 h-3"/>
+          </Button>
+        </div>
+      );
+    },
   },
   // {
   //   accessorKey: "status",
@@ -102,6 +123,32 @@ export const columns: ColumnDef<Tokens>[] = [
   {
     accessorKey: "updatedAt",
     header: "Updated at",
+    cell: ({ getValue }) => {
+      const date = new Date(getValue() as string);
+      const formattedDate = date.toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "numeric",
+        day: "numeric",
+      });
+      const tooltipTime = date.toLocaleString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+      });
+      return (
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger>{formattedDate}</TooltipTrigger>
+            <TooltipContent>
+              <p>{tooltipTime}</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+      )
+    },
   },
   {
     id: "actions",
@@ -110,18 +157,13 @@ export const columns: ColumnDef<Tokens>[] = [
       const router = useRouter()
 
       const handleEdit = () => {
-        if (confirm(`Edit token ${tokens.tokenName}?`)) {
-          router.push(`/token/edit/${tokens.tokenId}`)
-          console.log(`Edit button confirmed. Routing to ${tokens.tokenId}`)
-        }
-        console.log(`Edit action abandoned.`)
+        router.push(`/token/edit/${tokens.tokenId}`)
       }
       const handleDelete = () => {
-        if (confirm(`Delete token ${tokens.tokenName}?`)) {
-          // Perform delete operation here
-          console.log(`Deleting token ${tokens.tokenId}`)
-        }
+        console.log(`Deleting token ${tokens.tokenId}`)
       }
+
+      const { isDarkMode } = useTheme();
  
       return (
         <DropdownMenu>
@@ -130,15 +172,32 @@ export const columns: ColumnDef<Tokens>[] = [
               <MoreHorizontal className="h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
+          <DropdownMenuContent align="end" className={`border p-3 ${isDarkMode && "bg-gray-900 border-gray-500 text-gray-300 hover:text-gray-100/80"}`}>
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem onClick={handleEdit}>
+            <DropdownMenuItem onClick={handleEdit} className="cursor-pointer">
               Edit
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={handleDelete}>
+            {/* <DropdownMenuI tem onClick={handleDelete}>
               Delete
-            </DropdownMenuItem>
+            </DropdownMenuItem> */}
+            <Dialog>
+              <DialogTrigger className={`px-2 py-1.5 text-sm w-full text-start ${isDarkMode && "hover:bg-gray-100 rounded-sm hover:text-black"} `} >Delete</DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Are you absolutely sure?</DialogTitle>
+                  <DialogDescription>
+                    This action cannot be undone. This will permanently delete the token
+                    and remove it data from our servers.
+                  </DialogDescription>
+                </DialogHeader>
+                <DialogFooter>
+                  <DialogClose asChild>
+                    <Button onClick={handleDelete} type="submit">Delete</Button>
+                  </DialogClose> 
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
           </DropdownMenuContent>
         </DropdownMenu>
       )
