@@ -33,6 +33,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import useIsMobile from "@/hooks/useIsMobile";
+import DarkModeButton from "@/components/DarkModeButton";
 
 const NavigationMenuMobile = () => {
   const { isDarkMode } = useTheme();
@@ -50,7 +51,7 @@ const NavigationMenuMobile = () => {
   return (
     <>
       {isMobile ? (
-        <div className={`fixed flex justify-between items-center h-20 w-full border-b shadow ${isDarkMode && "border-gray-900 bg-gray-900"}`}>
+        <div className={`fixed z-[50] flex justify-between items-center h-20 w-full border-b shadow ${isDarkMode ? "border-gray-900 bg-gray-900" : "bg-white"}`}>
           <Link href="/" className="flex items-center gap-4 ml-3">
             <Image
               src="/favicon.ico"
@@ -64,12 +65,11 @@ const NavigationMenuMobile = () => {
           <Sheet>
             <SheetTrigger asChild>
               <Button variant="outline" className={`border mr-4 px-2 ${isDarkMode && "bg-gray-900 text-gray-200 border-gray-700"}`}>
-                {/* <MenuIcon /> */}
                 <LuMenu className="h-6 w-6"/>
               </Button>
             </SheetTrigger>
             <SheetContent
-              className={`border ${
+              className={`border z-[100] ${
                 isDarkMode &&
                 "bg-gray-900 border-0 text-gray-300 hover:text-gray-100/80"
               }`}
@@ -101,34 +101,37 @@ const NavigationMenuMobile = () => {
                   </div>
                 </div>
 
-                <div className="flex justify-between gap-4">
-                  <p>{userEmail}</p>
-                  <DropdownMenu>
-                    <DropdownMenuTrigger>
-                      <MoreHorizontalIcon />
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent
-                      className={`mr-6 mb-2 border p-3 ${
-                        isDarkMode &&
-                        "bg-gray-900 border-gray-500 text-gray-300 hover:text-gray-100/80"
-                      }`}
-                    >
-                      <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                      <DropdownMenuSeparator />
-                      <DropdownMenuItem className="cursor-pointer">
-                        Profile
-                      </DropdownMenuItem>
-                      <DropdownMenuItem className="cursor-pointer">
-                        Billing
-                      </DropdownMenuItem>
-                      <DropdownMenuItem className="cursor-pointer">
-                        Team
-                      </DropdownMenuItem>
-                      <DropdownMenuItem className="cursor-pointer">
-                        Subscription
-                      </DropdownMenuItem>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
+                <div className="flex flex-col gap-3">
+                  <DarkModeButton />
+                  <div className="flex justify-between gap-4">
+                    <p>{userEmail}</p>
+                    <DropdownMenu>
+                      <DropdownMenuTrigger>
+                        <MoreHorizontalIcon />
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent
+                        className={`mr-6 mb-2 border p-3 ${
+                          isDarkMode &&
+                          "bg-gray-900 border-gray-500 text-gray-300 hover:text-gray-100/80"
+                        }`}
+                      >
+                        <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                        <DropdownMenuSeparator />
+                        <DropdownMenuItem className="cursor-pointer">
+                          Profile
+                        </DropdownMenuItem>
+                        <DropdownMenuItem className="cursor-pointer">
+                          Billing
+                        </DropdownMenuItem>
+                        <DropdownMenuItem className="cursor-pointer">
+                          Team
+                        </DropdownMenuItem>
+                        <DropdownMenuItem className="cursor-pointer">
+                          Subscription
+                        </DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  </div>
                 </div>
               </div>
             </SheetContent>

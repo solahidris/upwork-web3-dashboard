@@ -18,7 +18,7 @@ const OverviewTopContent = () => {
 
 
   return (
-    <div className="grid grid-cols-4 gap-4">
+    <div className="grid lg:grid-cols-4 gap-4">
       {overviewData.map((data, index) => (
         <Card className="p-6" key={index}>
           <div className="flex justify-between pb-2">

@@ -18,7 +18,7 @@ export default function Home() {
           <div className="flex justify-between">
             <p className="text-3xl font-bold">Home</p>
             <div className="flex gap-2">
-              <DarkModeButton />
+              {!isMobile && <DarkModeButton />}
             </div>
           </div>
           <div><Button>You are Logged In</Button></div>

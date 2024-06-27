@@ -9,11 +9,11 @@ const OverviewContent = () => {
       
       <OverviewTopContent />      
       
-      <div className="grid grid-cols-8 gap-4">
-        <Card className="p-6 col-span-5">
-          <p className="font-semibold">Overview graph</p>
+      <div className="grid lg:grid-cols-8 gap-4">
+        <Card className="p-6 lg:col-span-5">
+          <p className="font-semibold">Overview</p>
         </Card>
-        <Card className="p-6 col-span-3">
+        <Card className="p-6 lg:col-span-3">
           <OverviewSales />
         </Card>
       </div>

@@ -28,7 +28,7 @@ const CalendarDashboard = ({ className }: React.HTMLAttributes<HTMLDivElement>) 
             id="date"
             variant={"outline"}
             className={`
-              w-[300px] justify-start text-left font-normal border -mt-2
+              w-[250px] justify-start text-left font-normal border -mt-2
               ${!date ? "text-muted-foreground" : ""}
               ${isDarkMode ? "bg-gray-900 border-gray-800" : "bg-gray-50"}
             `}
