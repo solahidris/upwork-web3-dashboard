@@ -20,10 +20,10 @@ export default function Home() {
             </div>
           </div>
           <div><Button>You are Logged In</Button></div>
-          <div><Button className="line-through bg-green-600">1- edits dont need the alert dialog</Button></div>
+          {/* <div><Button className="line-through bg-green-600">1- edits dont need the alert dialog</Button></div>
           <div><Button className="line-through bg-green-600">2- directly navigate to the edit page</Button></div>
           <div><Button className="line-through bg-green-600">3- for delete, can use the shadcn dialog</Button></div>
-          <div><Button>4- for any other pages please use back the same dashboard layout</Button></div>
+          <div><Button className="line-through bg-green-600">4- for any other pages please use back the same dashboard layout</Button></div> */}
         </Card>
       </div>
     </div>
