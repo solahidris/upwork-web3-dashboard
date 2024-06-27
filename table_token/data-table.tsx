@@ -32,6 +32,8 @@ import {
 import { Filter, ChevronDown } from "lucide-react";
 import { statusMapping } from "./columns";
 import { useTheme } from "@/contexts/ThemeContext";
+import { useState } from "react";
+import useIsMobile from "@/hooks/useIsMobile";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -68,11 +70,15 @@ const DataTable = <TData, TValue>({
     },
   });
   const { isDarkMode } = useTheme();
+  const isMobile = useIsMobile();
+  const [showFilters, setShowFilters] = useState(isMobile ? false : true);
+  const handleShowFilters = () => {setShowFilters(!showFilters)};
 
   return (
     <div>
-      <div className="flex items-center py-4 gap-4">
-        <Input
+      {isMobile && <div className="w-full flex justify-end py-4"><Button className="text-xs h-6 px-2 -mr-2 -mt-2" onClick={handleShowFilters}>Filters <ChevronDown className={`h-3 w-3 ml-1 transition duration-300 ${showFilters && "rotate-180"}`} /></Button></div>}
+      <div className={`flex lg:flex-row flex-col items-center py-4 gap-4 transition-all duration-300 ease-in-out ${showFilters ? "opacity-100 h-auto" : "opacity-0 h-0"}`}>
+      <Input
           placeholder="Wallet Address"
           value={
             (table.getColumn("contractAddress")?.getFilterValue() as string) ??
@@ -116,14 +122,15 @@ const DataTable = <TData, TValue>({
           }
           className={`max-w-sm border ${isDarkMode && "bg-gray-900 border-gray-800"}`}
         />
+        <div className="flex gap-4 w-full">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="outline" className={`max-w-sm border ml-auto ${isDarkMode && "bg-gray-900 border-gray-800 hover:bg-gray-950/50 hover:text-gray-100/80"}`}>
+            <Button variant="outline" className={`w-md border w-full ${isDarkMode && "bg-gray-900 border-gray-800 hover:bg-gray-950/50 hover:text-gray-100/80"}`}>
               <span>Status</span>
               <ChevronDown className="h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" className={`border p-3 ${isDarkMode && "bg-gray-900 border-gray-500 text-gray-300 hover:text-gray-100/80"}`}>
+          <DropdownMenuContent align="end" className={`border my-2 p-3 ${isDarkMode && "bg-gray-900 border-gray-500 text-gray-300 hover:text-gray-100/80"}`}>
             {Object.entries(statusMapping).map(([key, value]) => (
               <DropdownMenuCheckboxItem
                 key={key}
@@ -146,7 +153,7 @@ const DataTable = <TData, TValue>({
               <Filter />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" className={`border p-3 ${isDarkMode && "bg-gray-900 border-gray-500 text-gray-300 hover:text-gray-100/80"}`}>
+          <DropdownMenuContent align="end" className={`border my-2 p-3 ${isDarkMode && "bg-gray-900 border-gray-500 text-gray-300 hover:text-gray-100/80"}`}>
             {table
               .getAllColumns()
               .filter((column) => column.getCanHide())
@@ -166,6 +173,7 @@ const DataTable = <TData, TValue>({
               })}
           </DropdownMenuContent>
         </DropdownMenu>
+        </div>
       </div>
 
       {/*  RENDER - SELECT ROW FEATURE */}

@@ -13,8 +13,8 @@ export default function Home() {
   return (
     <div className={`flex min-h-screen ${isDarkMode ? 'bg-gray-800 text-white' : 'bg-gray-50 text-black'}`}>
       <NavigationMenu />
-      <div className={`w-full p-8 ${isMobile ? "mt-20" : "ml-[240px]"} `}>
-        <Card className="p-8 flex flex-col gap-4">
+      <div className={`w-full p-6 lg:p-8 ${isMobile ? "mt-20" : "ml-[240px]"} `}>
+        <Card className="p-6 lg:p-8 flex flex-col gap-4">
           <div className="flex justify-between">
             <p className="text-3xl font-bold">Home</p>
             <div className="flex gap-2">
