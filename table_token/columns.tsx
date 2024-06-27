@@ -11,6 +11,7 @@ import Image from "next/image"
 import { useTheme } from "@/contexts/ThemeContext"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger, } from "@/components/ui/tooltip"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogClose,  DialogTitle, DialogTrigger, DialogFooter } from "@/components/ui/dialog"
+import { useToast } from "@/components/ui/use-toast"
 
 // Custom cell renderer for token logo
 const TokenLogoCell = ({ value }: { value: string }) => (
@@ -91,10 +92,15 @@ export const columns: ColumnDef<Tokens>[] = [
     cell: ({ getValue }) => {
       const fullAddress = getValue() as string;
       const displayAddress = `${fullAddress.slice(0, 6)}...${fullAddress.slice(-4)}`;
+      const { toast } = useToast();
 
       const handleCopy = () => {
         navigator.clipboard.writeText(fullAddress);
-        alert("Contract address copied to clipboard!");
+        toast({
+          duration: 3000,
+          title: "Copy Successful",
+          description: `${displayAddress} was copied.`,
+        })
       };
 
       return (
