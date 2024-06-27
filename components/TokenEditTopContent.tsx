@@ -56,7 +56,7 @@ const TokenEditTopContent = ({ formData }: { formData: Tokens | null }) => {
   }, [formData]);
 
   return (
-    <div className="grid grid-cols-2 gap-4">
+    <div className="grid lg:grid-cols-2 gap-4">
 
       {mappedData ? mappedData.map((data, index) => (
         <Card className="p-6" key={index}>
@@ -64,7 +64,7 @@ const TokenEditTopContent = ({ formData }: { formData: Tokens | null }) => {
             
             {data?.contractAddress && 
               <div className="w-full min-h-20">
-              <p className="font-semibold text-3xl mb-2">Contract Address</p>
+              <p className="font-semibold text-2xl lg:text-3xl mb-2">Contract Address</p>
                 <Input
                   placeholder="Contract Address"
                   value={formData?.contractAddress || ''}
@@ -75,7 +75,7 @@ const TokenEditTopContent = ({ formData }: { formData: Tokens | null }) => {
 
             {data?.status && 
               <div className="w-full min-h-20">
-              <p className="font-semibold text-3xl mb-2">Token Status</p>
+              <p className="font-semibold text-2xl lg:text-3xl mb-2">Token Status</p>
                 <Input
                   placeholder="Token Status"
                   value={formData?.status || ''}
@@ -85,7 +85,7 @@ const TokenEditTopContent = ({ formData }: { formData: Tokens | null }) => {
               </div>}
             {data?.tokenChain && 
               <div className="w-full min-h-20">
-              <p className="font-semibold text-3xl mb-2">Token Chain</p>
+              <p className="font-semibold text-2xl lg:text-3xl mb-2">Token Chain</p>
                 <Input
                   placeholder="Token Chain"
                   value={formData?.tokenChain || ''}
@@ -96,7 +96,7 @@ const TokenEditTopContent = ({ formData }: { formData: Tokens | null }) => {
 
             {data?.tokenId && 
               <div className="w-full min-h-20">
-              <p className="font-semibold text-3xl mb-2">Token ID</p>
+              <p className="font-semibold text-2xl lg:text-3xl mb-2">Token ID</p>
                 <Input
                   placeholder="Token ID"
                   value={formData?.tokenId || ''}
@@ -107,7 +107,7 @@ const TokenEditTopContent = ({ formData }: { formData: Tokens | null }) => {
 
             {data?.tokenLogo && 
               <div className="w-full min-h-20">
-              <p className="font-semibold text-3xl mb-2">Token Logo</p>
+              <p className="font-semibold text-2xl lg:text-3xl mb-2">Token Logo</p>
                 <Input
                   placeholder="Token Logo"
                   value={formData?.tokenLogo || ''}
@@ -118,7 +118,7 @@ const TokenEditTopContent = ({ formData }: { formData: Tokens | null }) => {
 
             {data?.tokenName && 
               <div className="w-full min-h-20">
-              <p className="font-semibold text-3xl mb-2">Token Name</p>
+              <p className="font-semibold text-2xl lg:text-3xl mb-2">Token Name</p>
                 <Input
                   placeholder="Token Name"
                   value={formData?.tokenName || ''}
@@ -129,7 +129,7 @@ const TokenEditTopContent = ({ formData }: { formData: Tokens | null }) => {
 
             {data?.tokenSymbol && 
               <div className="w-full min-h-20">
-              <p className="font-semibold text-3xl mb-2">Token Symbol</p>
+              <p className="font-semibold text-2xl lg:text-3xl mb-2">Token Symbol</p>
                 <Input
                   placeholder="Token Symbol"
                   value={formData?.tokenSymbol || ''}
@@ -140,7 +140,7 @@ const TokenEditTopContent = ({ formData }: { formData: Tokens | null }) => {
 
             {data?.updatedAt && 
               <div className="w-full min-h-20">
-              <p className="font-semibold text-3xl mb-2">Last Update</p>
+              <p className="font-semibold text-2xl lg:text-3xl mb-2">Last Update</p>
                 <Input
                   // placeholder="Token ID"
                   value={formData?.updatedAt || ''}

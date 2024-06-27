@@ -2,6 +2,8 @@ import { Card } from "./ui/card";
 import TokenEditTopContent from "./TokenEditTopContent";
 import OverviewSales from "./OverviewSales";
 import { Button } from "./ui/button";
+import { useToast } from "@/components/ui/use-toast"
+import { useRouter } from "next/router";
 
 type Tokens = {
   tokenId: string
@@ -17,22 +19,27 @@ type Tokens = {
 }
 
 const TokenEditDashboard = ({ formData }: { formData: Tokens | null }) => {
+  const { toast } = useToast();
+  const router = useRouter();
 
   return(
     <div className="flex flex-col gap-4 w-full">
       
-      <TokenEditTopContent formData={formData} />      
-      
-      {/* <div className="grid grid-cols-8 gap-4">
-        <Card className="p-6 col-span-5">
-          <p className="font-semibold">Overview graph</p>
-        </Card>
-        <Card className="p-6 col-span-3">
-          <OverviewSales />
-        </Card>
-      </div> */}
-      <div className="bg-red-300x flex justify-end">
-      <Button className={`px-16 bg-gray-100 border border-gray-300 text-black hover:bg-gray-300`} >Save</Button>
+      <TokenEditTopContent formData={formData} />
+      <div className="flex justify-end">
+        <Button
+          onClick={() => {
+            toast({
+              duration: 2000,
+              title: "Edit Successful",
+              description: `${formData?.tokenName} (${formData?.tokenSymbol}) has been saved.`,
+            })
+            router.push("/token");
+          }}
+          className={`px-16 bg-gray-50 shadow-sm border border-gray-200 text-black hover:bg-gray-300`}
+        >
+          Save
+        </Button>
       </div>
 
     </div>

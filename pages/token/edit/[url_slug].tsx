@@ -9,6 +9,7 @@ import { useTheme } from '@/contexts/ThemeContext'
 import NavigationMenu from '@/components/NavigationMenu'
 import DarkModeButton from '@/components/DarkModeButton'
 import TokenEditDashboard from '@/components/TokenEditDashboard'
+import useIsMobile from '@/hooks/useIsMobile'
 
 type Tokens = {
   tokenId: string
@@ -45,6 +46,7 @@ export default function EditToken() {
   const { url_slug } = router.query
   const queryClient = useQueryClient();
   const { isDarkMode } = useTheme();
+  const isMobile = useIsMobile();
 
   const { data: tokenData, isLoading } = useQuery({
     queryKey: ['token', url_slug],
@@ -83,14 +85,11 @@ export default function EditToken() {
   return (
     <div className={`flex min-h-screen ${isDarkMode ? 'bg-gray-800 text-white' : 'bg-gray-50 text-black'}`}>
       <NavigationMenu />
-      <div className="w-full p-8 ml-[240px]">
+      <div className={`w-full p-6 lg:p-8 ${isMobile ? "mt-20" : "ml-[240px]"} `}>
         <Card className="p-8 flex flex-col gap-4">
           <div className="flex justify-between">
             <p className="text-3xl font-bold">Edit Token</p>
-            <div className="flex gap-4">
-              {/* <CalendarDashboard /> */}
-              <DarkModeButton />
-            </div>
+            {!isMobile && <DarkModeButton />}
           </div>
           <TokenEditDashboard formData={formData}/>
         </Card>
