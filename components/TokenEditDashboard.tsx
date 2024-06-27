@@ -18,14 +18,15 @@ type Tokens = {
   // amount: number
 }
 
-const TokenEditDashboard = ({ formData }: { formData: Tokens | null }) => {
+const TokenEditDashboard = ({ formData, onInputChange }: { formData: Tokens | null, onInputChange: (field: keyof Tokens, value: string | string[]) => void }) => {
+
   const { toast } = useToast();
   const router = useRouter();
 
   return(
     <div className="flex flex-col gap-4 w-full">
       
-      <TokenEditTopContent formData={formData} />
+      <TokenEditTopContent formData={formData} onInputChange={onInputChange}/>
       <div className="flex justify-end">
         <Button
           onClick={() => {

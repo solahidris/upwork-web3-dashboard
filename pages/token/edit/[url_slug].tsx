@@ -48,6 +48,10 @@ export default function EditToken() {
   const { isDarkMode } = useTheme();
   const isMobile = useIsMobile();
 
+  const handleInputChange = (field: keyof Tokens, value: string | string[]) => {
+    setFormData((prevData) => prevData ? { ...prevData, [field]: value } : null);
+  };
+  
   const { data: tokenData, isLoading } = useQuery({
     queryKey: ['token', url_slug],
     queryFn: () => fetchTokenData(url_slug as string),
@@ -91,7 +95,7 @@ export default function EditToken() {
             <p className="text-3xl font-bold">Edit Token</p>
             {!isMobile && <DarkModeButton />}
           </div>
-          <TokenEditDashboard formData={formData}/>
+          <TokenEditDashboard formData={formData} onInputChange={handleInputChange}/>
         </Card>
       </div>
 
