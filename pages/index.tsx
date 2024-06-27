@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import NavigationMenu from "@/components/NavigationMenu";
+import NavigationMenuMobile from "@/components/NavigationMenuMobile";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useTheme } from "@/contexts/ThemeContext";
@@ -11,6 +12,7 @@ export default function Home() {
   return (
     <div className={`flex min-h-screen ${isDarkMode ? 'bg-gray-800 text-white' : 'bg-gray-50 text-black'}`}>
       <NavigationMenu />
+      {/* <NavigationMenuMobile /> */}
       <div className="w-full p-8 ml-[240px]">
         <Card className="p-8 flex flex-col gap-4">
           <div className="flex justify-between">
@@ -20,10 +22,6 @@ export default function Home() {
             </div>
           </div>
           <div><Button>You are Logged In</Button></div>
-          {/* <div><Button className="line-through bg-green-600">1- edits dont need the alert dialog</Button></div>
-          <div><Button className="line-through bg-green-600">2- directly navigate to the edit page</Button></div>
-          <div><Button className="line-through bg-green-600">3- for delete, can use the shadcn dialog</Button></div>
-          <div><Button className="line-through bg-green-600">4- for any other pages please use back the same dashboard layout</Button></div> */}
         </Card>
       </div>
     </div>
