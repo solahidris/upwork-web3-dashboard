@@ -178,8 +178,8 @@ const TokenEditTopContent = ({ formData, onInputChange }: { formData: Tokens | n
               <div className="w-full min-h-20">
                 <p className="font-semibold text-2xl lg:text-3xl mb-2">Last Update</p>
                 <Input
+                  disabled
                   value={formData?.updatedAt || ''}
-                  onChange={(e) => onInputChange('updatedAt', e.target.value)}
                   className={`max-w-xl text-black`}
                 />
               </div>}
