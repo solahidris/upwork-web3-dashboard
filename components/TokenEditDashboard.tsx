@@ -26,20 +26,20 @@ const TokenEditDashboard = ({ formData, onInputChange }: { formData: Tokens | nu
   const [localFormData, setLocalFormData] = useState(formData);
 
   const handleSave = () => {
-    if (!localFormData) return;
+    // if (!localFormData) return;
   
-    const updatedFormData: Tokens = {
-      ...localFormData,
-      updatedAt: new Date().toISOString(),
-    };
+    // const updatedFormData: Tokens = {
+    //   ...localFormData,
+    //   updatedAt: new Date().toISOString(),
+    // };
   
-    setLocalFormData(updatedFormData);
-    onInputChange('updatedAt', updatedFormData.updatedAt);
+    // setLocalFormData(updatedFormData);
+    // onInputChange('updatedAt', updatedFormData.updatedAt);
 
     toast({
       duration: 2000,
       title: "Edit Successful",
-      description: `${updatedFormData.tokenName} (${updatedFormData.tokenSymbol}) has been saved.`,
+      // description: `${updatedFormData.tokenName} (${updatedFormData.tokenSymbol}) has been saved.`,
     });
 
     router.push("/token");
